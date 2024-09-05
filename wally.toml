@@ -1,0 +1,13 @@
+[package]
+name = "themusaigen/talkie"
+description = "Library for remote communication. Inspired by Comm from Stephen Leitnick."
+version = "1.21.0"
+license = "MIT"
+authors = ["themusaigen <>"]
+exclude = ["**"]
+include = ["src", "src/**", "wally.toml", "default.project.json", "LICENSE"]
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+
+[dependencies]
+Signal = "sleitnick/signal@2.0.1"

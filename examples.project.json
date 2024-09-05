@@ -1,0 +1,28 @@
+{
+  "name": "talkie-examples",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Talkie": {
+        "$path": "src"
+      },
+      "Packages": {
+        "$path": "Packages"
+      }
+    },
+
+    "ServerScriptService":{
+      "Examples": {
+        "$path": "examples/server"
+      }
+    },
+
+    "StarterPlayer":{
+      "StarterPlayerScripts":{
+        "Examples": {
+          "$path": "examples/client" 
+        }
+      }
+    }
+  }
+}

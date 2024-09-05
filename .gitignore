@@ -1,0 +1,9 @@
+# Ignore packages
+/Packages
+test/Packages
+
+# Ignore Roblox files
+*.rbxlx
+*.rbxlx.lock
+*.rbxl
+*.rbxl.lock

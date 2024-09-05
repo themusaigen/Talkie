@@ -1,0 +1,13 @@
+{
+  "editor.defaultFormatter": "JohnnyMorganz.stylua",
+  "editor.formatOnSave": true,
+  "[lua]": {  
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000
+  },
+  "robloxLsp.hint.enable": true,
+  "robloxLsp.hint.paramName": true,
+  "robloxLsp.hint.returnType": true,
+  "robloxLsp.hint.setType": true,
+  "robloxLsp.workspace.rojoProjectFile": "test"
+}
