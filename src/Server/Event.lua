@@ -39,11 +39,20 @@ end
 function Event.new(parent: Instance, name: string, unreliable: boolean?, middleware: Types.ServerMiddleware?): Types.ServerEvent
 	assert(typeof(parent) == "Instance", `parent is expected to be Instance, got {typeof(parent)}`)
 	assert(typeof(name) == "string", `name is expected to be string, got {typeof(name)}`)
+	assert(#name > 0, "name is not expected to be empty")
+
+	-- Typecheck unreliable if present.
+	if not (unreliable == nil) then
+		assert(typeof(unreliable) == "boolean", `unreliable is expected to be boolean, got {typeof(unreliable)}`)
+	end
 
 	-- Typecheck middleware if present.
 	if middleware then
 		assert(typeof(middleware) == "table", `middleware is expected to be table, got {typeof(middleware)}`)
 	end
+
+	-- Check for duplicates.
+	assert(not parent:FindFirstChild(name), `{name} is not expected to exist, got duplicate`)
 
 	-- Create new remote.
 	local remote: RemoteEvent | UnreliableRemoteEvent =
@@ -80,13 +89,19 @@ function Event.new(parent: Instance, name: string, unreliable: boolean?, middlew
 end
 
 -- Appends new connection to the event.
-function Event:Connect(fun: Types.ServerHandler): Signal.Connection
-	return self._signal:Connect(fun)
+function Event:Connect(handler: Types.ServerHandler): Signal.Connection
+	-- Signal don't checks handler param.
+	assert(typeof(handler) == "function", `handler is expected to be function, got {typeof(handler)}`)
+
+	return self._signal:Connect(handler)
 end
 
 -- Appends new connection that will fired only once.
-function Event:Once(fun: Types.ServerHandler): Signal.Connection
-	return self._signal:Once(fun)
+function Event:Once(handler: Types.ServerHandler): Signal.Connection
+	-- Signal don't checks handler param.
+	assert(typeof(handler) == "function", `handler is expected to be function, got {typeof(handler)}`)
+
+	return self._signal:Once(handler)
 end
 
 -- Yields the current thread until the signal is fired, and returns the arguments fired from the signal.
