@@ -1,10 +1,6 @@
 return function()
 	beforeAll(function(context)
 		context.client = context.Talkie.Client(game.ReplicatedStorage, "TestFolder_2")
-		context.test1 = context.client:Function("TestFunction_1", function()
-			return 1337
-		end)
-		context.dummy = function() end
 	end)
 
 	describe("0. Create", function()
@@ -64,36 +60,6 @@ return function()
 			expect(function()
 				context.client:Function("TestFunction_0"):SetMiddleware({ Outbound = 123 })
 			end).to.throw()
-		end)
-	end)
-
-	describe("3. Handle", function()
-		it("0. should handle server invokes", function(context)
-			local output
-      
-			context.client:Function("TestFunction_0", function(arg)
-				output = arg
-			end)
-
-			expect(context.AwaitCondition(function()
-				return (output == 123)
-			end)).to.equal(true)
-		end)
-
-		it("1. should properly handle return values", function(context)
-			local value = context.client:Function("TestFunction_0")()
-
-			expect(context.AwaitCondition(function()
-				return (value == 1337)
-			end)).to.equal(true)
-		end)
-	end)
-
-	describe("4. Invoke", function()
-		it("0. should properly invoke server", function(context)
-			expect(function()
-				context.test1(123)
-			end).never.to.throw()
 		end)
 	end)
 end

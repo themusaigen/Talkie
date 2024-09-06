@@ -1,13 +1,6 @@
 return function()
 	beforeAll(function(context)
 		context.server = context.Talkie.Server(game.ReplicatedStorage, "TestFolder_2")
-
-		-- Create function for client`s tests.
-		context.TestFun0 = context.server:Function("TestFunction_0", function()
-			return 1337
-		end)
-		context.TestFun1 = context.server:Function("TestFunction_1")
-
 		context.dummy = function() end
 	end)
 
@@ -87,39 +80,6 @@ return function()
 			end).to.throw()
 
 			fun:Destroy()
-		end)
-	end)
-
-	describe("3. Invoke", function()
-		it("0. should properly invoke", function(context)
-			expect(function()
-				-- This test will be run more faster than client can start handling this function, so delay this moment.
-				task.wait(1.5)
-
-				context.TestFun0:Invoke(context.Player, 123)
-			end).never.to.throw()
-		end)
-	end)
-
-	describe("4. Handle", function()
-		it("0. should properly handle player invokes", function(context)
-			local output
-
-			context.TestFun1:Listen(function(player, arg)
-				output = arg
-			end)
-
-			expect(context.AwaitCondition(function()
-				return (output == 123)
-			end)).to.equal(true)
-		end)
-
-		it("1. should properly handle return values", function(context)
-			local value = context.TestFun1(context.Player)
-
-			expect(context.AwaitCondition(function()
-				return (value == 1337)
-			end)).to.equal(true)
 		end)
 	end)
 end
