@@ -18,6 +18,9 @@ function Property.new(parent: Instance, name: string, middleware: Types.ClientMi
 		assert(typeof(middleware) == "table", `middleware is expected to be table, got {typeof(middleware)}`)
 	end
 
+	-- Check for exist.
+	assert(parent:FindFirstChild(name), `Property {name} expected to exist, got nil`)
+
 	-- Create new instance
 	local self = setmetatable({
 		_value = nil,

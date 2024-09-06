@@ -40,7 +40,7 @@ function Event.new(parent: Instance, name: string, middleware: Types.ClientMiddl
 
 	-- Find remote.
 	local remote = parent:FindFirstChild(name) :: RemoteEvent | UnreliableRemoteEvent
-	assert(remote, `RemoteEvent with name {name} is expected to exist, got nil`)
+	assert(remote, `RemoteEvent {name} expected to exist, got nil`)
 
 	-- Create new instance.
 	local self = setmetatable({

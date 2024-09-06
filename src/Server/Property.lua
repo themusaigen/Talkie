@@ -26,6 +26,9 @@ function Property.new(
 		assert(typeof(middleware) == "table", `middleware is expected to be table, got {typeof(middleware)}`)
 	end
 
+	-- Check for duplicates
+	assert(not parent:FindFirstChild(name), `{name} is not expected to exist, got duplicate`)
+
 	-- Create new instance
 	local self = setmetatable({
 		_initial = initial,

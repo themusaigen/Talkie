@@ -50,7 +50,7 @@ function Function.new(
 
 	-- Find remote.
 	local remote = parent:FindFirstChild(name) :: RemoteFunction
-	assert(remote, "remote is expected to exist, got nil")
+	assert(remote, `RemoteFunction {name} expected to exist, got nil`)
 
 	-- Create instance.
 	local self = setmetatable({

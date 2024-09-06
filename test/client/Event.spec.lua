@@ -16,6 +16,12 @@ return function()
 			end).to.throw()
 		end)
 
+		it("3. should throw error if don't exist", function(context)
+      expect(function()
+        context.client:Event("TestEvent_3232")
+      end).to.throw()
+    end)
+
 		it("4. should throw error if not table provided as middleware", function(context)
 			expect(function()
 				context.client:Event("TestEvent", 123)
