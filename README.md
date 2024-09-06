@@ -28,7 +28,10 @@ Talkie = "themusaigen/talkie@1.22.0"
 
 ## Usage
 
-See `examples` folder.
+https://github.com/themusaigen/Talkie/blob/29419684f6a36b01b5eacad8aa3737055a3715ed/examples/client/Basic.client.lua#L1-L26
+https://github.com/themusaigen/Talkie/blob/29419684f6a36b01b5eacad8aa3737055a3715ed/examples/server/Basic.server.lua#L1-L25
+
+For other examples see `examples` folder.
 
 ## License
 
