@@ -18,5 +18,9 @@ return function()
 				task.wait()
 			end
 		end
+
+		-- Don't start server tests until player added.
+		context.Player = game.Players.PlayerAdded:Wait()
+		context.Player.CharacterAdded:Wait()
 	end)
 end

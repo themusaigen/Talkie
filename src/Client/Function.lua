@@ -84,7 +84,6 @@ function Function.new(
 
 		-- Call our handler.
 		local out = { self._handler(table.unpack(args)) }
-		print(out)
 
 		-- Process it with onbound middleware.
 		do

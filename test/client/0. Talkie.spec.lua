@@ -7,7 +7,9 @@ return function()
 		end)
 
 		it("1. should throw error on non instance parent", function(context)
-			expect(context.Talkie.Client(false)).to.throw()
+			expect(function()
+				context.Talkie.Client(123)
+			end).to.throw()
 		end)
 
 		it("2. should throw error on non string namespace", function(context)

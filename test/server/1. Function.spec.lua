@@ -3,10 +3,10 @@ return function()
 		context.server = context.Talkie.Server(game.ReplicatedStorage, "TestFolder_2")
 
 		-- Create function for client`s tests.
-		context.test = context.server:Function("TestFunction_0", function()
+		context.TestFun0 = context.server:Function("TestFunction_0", function()
 			return 1337
 		end)
-		context.test1 = context.server:Function("TestFunction_1")
+		context.TestFun1 = context.server:Function("TestFunction_1")
 
 		context.dummy = function() end
 	end)
@@ -90,29 +90,22 @@ return function()
 		end)
 	end)
 
-	-- Due of nature AwaitCondition that yields main therad some tests not will work if run them at once, bc based on PlayerAdded.
-	-- So unskip some tests once by once if needed. Or mb i fix that later.
-	describeSKIP("3. Invoke", function()
+	describe("3. Invoke", function()
 		it("0. should properly invoke", function(context)
-			local success = false
-			game.Players.PlayerAdded:Connect(function(player)
-				expect(function()
-					context.test:Invoke(player, 123)
-				end).never.to.throw()
-				success = true
-			end)
+			expect(function()
+				-- This test will be run more faster than client can start handling this function, so delay this moment.
+				task.wait(1.5)
 
-			expect(context.AwaitCondition(function()
-				return (success == true)
-			end)).to.equal(true)
+				context.TestFun0:Invoke(context.Player, 123)
+			end).never.to.throw()
 		end)
 	end)
 
-	describeSKIP("4. Handle", function()
+	describe("4. Handle", function()
 		it("0. should properly handle player invokes", function(context)
 			local output
 
-			context.test1:Listen(function(player, arg)
+			context.TestFun1:Listen(function(player, arg)
 				output = arg
 			end)
 
@@ -121,14 +114,8 @@ return function()
 			end)).to.equal(true)
 		end)
 
-		-- As I mentioned above:
-		-- Bugged due nature of AwaitCondition that yields main thread so PlayerAdded:Connect never be called here.
-		-- Anyways, Remotes working good and return values handles properly.
 		it("1. should properly handle return values", function(context)
-			local value
-			game.Players.PlayerAdded:Connect(function(player)
-				value = context.test1(player)
-			end)
+			local value = context.TestFun1(context.Player)
 
 			expect(context.AwaitCondition(function()
 				return (value == 1337)

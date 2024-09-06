@@ -18,5 +18,8 @@ return function()
         task.wait()
       end
     end
+
+    -- Wait until PlayerAdded on server will be called.
+    game.Players.LocalPlayer.CharacterAdded:Wait()
   end)
 end
