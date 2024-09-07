@@ -7,33 +7,8 @@ local Types = require(script.Parent.Parent.Types)
 -- Signal module required to easily implement middlewares.
 local Signal = require(script.Parent.Parent.Shared.Signal)
 
--- Utility function to process inbound/outbound middleware on bunch of args.
-function processMiddleware(player: Player, middleware: Types.ServerMiddlewareList, args: { any })
-	if not middleware then
-		return true
-	end
-
-	for _, dispatch in middleware do
-		local nparams = debug.info(dispatch, "a")
-
-		-- Call this middleware.
-		local result: boolean?, outValue: table?
-
-		if nparams == 1 then
-			result, outValue = dispatch(args)
-		else
-			result, outValue = dispatch(player, args)
-		end
-
-		-- If we want to return our value -> do it.
-		if result == false then
-			return false, if outValue then outValue else {}
-		end
-	end
-
-	-- Continue to process anyways.
-	return true
-end
+-- Utility for processing middlewares.
+local ProcessMiddleware = require(script.Parent.Parent.Shared.MiddlewareProcessor)
 
 -- Creates new `RemoteEvent` or `UnreliableRemoteEvent` instance and return wrapper for it.
 function Event.new(parent: Instance, name: string, unreliable: boolean?, middleware: Types.ServerMiddleware?): Types.ServerEvent
@@ -74,7 +49,7 @@ function Event.new(parent: Instance, name: string, unreliable: boolean?, middlew
 
 		-- Process middleware on them.
 		do
-			local success = processMiddleware(player, self._middleware.Inbound, args)
+			local success = ProcessMiddleware(player, self._middleware.Inbound, args)
 			if not success then
 				return
 			end
@@ -136,7 +111,7 @@ function Event:Fire(player: Player | {Player}, ...: any)
 	local args = { ... }
 
 	-- Process middleware.
-	local success = processMiddleware(player, self._middleware.Outbound, args)
+	local success = ProcessMiddleware(player, self._middleware.Outbound, args)
 
 	-- If allowed to continue
 	if success then
@@ -150,7 +125,7 @@ function Event:FireAll(...: any)
 	local args = { ... }
 
 	-- Process middleware.
-	local success = processMiddleware(nil, self._middleware.Outbound, args)
+	local success = ProcessMiddleware(nil, self._middleware.Outbound, args)
 
 	-- If allowed to continue
 	if success then

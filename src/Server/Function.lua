@@ -7,37 +7,10 @@ end
 -- Types for IntelliSense.
 local Types = require(script.Parent.Parent.Types)
 
--- Utility function to process inbound/outbound middleware on bunch of args.
-function processMiddleware(player: Player, middleware: Types.ServerMiddlewareList, args: { any })
-	if not middleware then
-		return true
-	end
+-- Utility for processing middlewares.
+local ProcessMiddleware = require(script.Parent.Parent.Shared.MiddlewareProcessor)
 
-	for _, dispatch in middleware do
-		local nparams = debug.info(dispatch, "a")
-
-		-- Call this middleware.
-		local result: boolean?, outValue: table?
-
-		if nparams == 1 then
-			result, outValue = dispatch(args)
-		else
-			result, outValue = dispatch(player, args)
-		end
-
-		-- If we want to return our value do it.
-		if result == false then
-			return false, if outValue then outValue else {}
-		end
-	end
-
-	-- Continue to process anyways.
-	return true
-end
-
---[[
-	Creates new `RemoteFunction` in the workspace and returns a wrapper for it.
-]]
+-- Creates new `RemoteFunction` in the workspace and returns a wrapper for it.
 function Function.new(
 	parent: Instance,
 	name: string,
@@ -90,7 +63,7 @@ function Function.new(
 
 		-- Proccess it with inbound middleware.
 		do
-			local result, outPack = processMiddleware(player, self._middleware.Inbound, args)
+			local result, outPack = ProcessMiddleware(player, self._middleware.Inbound, args)
 			if result == false then
 				return table.unpack(outPack)
 			end
@@ -101,7 +74,7 @@ function Function.new(
 
 		-- Process it with onbound middleware.
 		do
-			local result, outPack = processMiddleware(player, self._middleware.Outbound, out)
+			local result, outPack = ProcessMiddleware(player, self._middleware.Outbound, out)
 			if result == false then
 				return table.unpack(outPack)
 			end
@@ -141,7 +114,7 @@ function Function:Invoke(player: Player, ...)
 	local args = { ... }
 
 	-- Process it with our middleware.
-	local result, out = processMiddleware(player, self._middleware.Outbound, args)
+	local result, out = ProcessMiddleware(player, self._middleware.Outbound, args)
 	if result then
 		return self._remote:InvokeClient(player, table.unpack(args))
 	else

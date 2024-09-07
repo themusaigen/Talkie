@@ -90,12 +90,7 @@ export type Server = {
 }
 
 export type SharedEntityList = {
-	ServerEvent
-	| ServerProperty
-	| ServerFunction
-	| ClientFunction
-	| ClientEvent
-	| ClientProperty
+	[string]: ServerEvent | ServerProperty | ServerFunction | ClientFunction | ClientEvent | ClientProperty,
 }
 
 return nil

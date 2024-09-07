@@ -7,25 +7,8 @@ local Types = require(script.Parent.Parent.Types)
 -- Signal module required to easily implement middlewares.
 local Signal = require(script.Parent.Parent.Shared.Signal)
 
--- Utility function to process inbound/outbound middleware on bunch of args.
-function processMiddleware(middleware: Types.ClientMiddlewareList, args: { any })
-	if not middleware then
-		return true
-	end
-
-	for _, dispatch in middleware do
-		-- Call this middleware.
-		local result: boolean?, outValue: table? = dispatch(args)
-
-		-- If we want to return our value -> do it.
-		if result == false then
-			return false, if outValue then outValue else {}
-		end
-	end
-
-	-- Continue to process anyways.
-	return true
-end
+-- Utility for processing middlewares.
+local ProcessMiddleware = require(script.Parent.Parent.Shared.MiddlewareProcessor)
 
 -- Grabs `RemoteEvent` or `UnreliableRemoteEvent` instance and return wrapper for it.
 function Event.new(parent: Instance, name: string, middleware: Types.ClientMiddleware?): Types.ClientEvent
@@ -56,7 +39,7 @@ function Event.new(parent: Instance, name: string, middleware: Types.ClientMiddl
 
 		-- Process middleware on them.
 		do
-			local success = processMiddleware(self._middleware.Inbound, args)
+			local success = ProcessMiddleware(self._middleware.Inbound, args)
 			if not success then
 				return
 			end
@@ -97,7 +80,7 @@ function Event:Fire(...: any)
 	local args = { ... }
 
 	-- Process middleware.
-	local success = processMiddleware(self._middleware.Outbound, args)
+	local success = ProcessMiddleware(self._middleware.Outbound, args)
 
 	-- If allowed to continue
 	if success then

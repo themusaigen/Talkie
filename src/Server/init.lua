@@ -18,9 +18,9 @@ end
 
 -- Create storages.
 local Storage = require(script.Parent.Shared.Storage)
-local FunctionStorage = Storage.new(Function.new)
-local EventStorage = Storage.new(Event.new)
-local PropertyStorage = Storage.new(Property.new)
+Talkie.FunctionStorage = Storage.new(Function.new)
+Talkie.EventStorage = Storage.new(Event.new)
+Talkie.PropertyStorage = Storage.new(Property.new)
 
 --[[
 	Creates new Server instance.
@@ -75,15 +75,15 @@ function Talkie:Function(
 	handler: Types.ServerHandler?,
 	middleware: Types.ServerMiddleware?
 ): Types.ServerFunction
-	return FunctionStorage.new(self._parent, name, handler, middleware)
+	return self.FunctionStorage.new(self._parent, name, handler, middleware)
 end
 
 function Talkie:Event(name: string, unreliable: boolean?, middleware: Types.ServerMiddleware?): Types.ServerEvent
-	return EventStorage.new(self._parent, name, unreliable, middleware)
+	return self.EventStorage.new(self._parent, name, unreliable, middleware)
 end
 
 function Talkie:Property(name: string, value: any, middleware: Types.ServerMiddleware?): Types.ServerProperty
-	return PropertyStorage.new(self._parent, name, value, middleware)
+	return self.PropertyStorage.new(self._parent, name, value, middleware)
 end
 
 -- Export the Talkie module.

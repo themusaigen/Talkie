@@ -7,25 +7,8 @@ end
 -- Types for IntelliSense.
 local Types = require(script.Parent.Parent.Types)
 
--- Utility function to process inbound/outbound middleware on bunch of args.
-function processMiddleware(middleware: Types.ClientMiddlewareList, args: { any })
-	if not middleware then
-		return true
-	end
-
-	for _, dispatch in middleware do
-		-- Call this middleware.
-		local result, outValue = dispatch(args)
-
-		-- If we want, to return our value, do it.
-		if result == false then
-			return false, if outValue then outValue else {}
-		end
-	end
-
-	-- Continue to process anyways.
-	return true
-end
+-- Utility for processing middlewares.
+local ProcessMiddleware = require(script.Parent.Parent.Shared.MiddlewareProcessor)
 
 -- Grabs `RemoteFunction` from the workspace and returns a wrapper for it.
 function Function.new(
@@ -76,7 +59,7 @@ function Function.new(
 
 		-- Proccess it with inbound middleware.
 		do
-			local result, outPack = processMiddleware(self._middleware.Inbound, args)
+			local result, outPack = ProcessMiddleware(self._middleware.Inbound, args)
 			if result == false then
 				return table.unpack(outPack)
 			end
@@ -87,7 +70,7 @@ function Function.new(
 
 		-- Process it with onbound middleware.
 		do
-			local result, outPack = processMiddleware(self._middleware.Outbound, out)
+			local result, outPack = ProcessMiddleware(self._middleware.Outbound, out)
 			if result == false then
 				return table.unpack(outPack)
 			end
@@ -126,7 +109,7 @@ function Function:Invoke(...)
 	local args = { ... }
 
 	-- Process it with our middleware.
-	local result, out = processMiddleware(self._middleware.Outbound, args)
+	local result, out = ProcessMiddleware(self._middleware.Outbound, args)
 	if result then
 		return self._remote:InvokeServer(table.unpack(args))
 	else
