@@ -4,8 +4,7 @@ local Talkie = {
 Talkie.__index = Talkie
 
 -- Types for IntelliSense.
-local Types = require(script.Parent.Shared.Types)
-
+local Types = require(script.Parent.Types)
 --[[
 	Group of Talkie`s modules.
 ]]

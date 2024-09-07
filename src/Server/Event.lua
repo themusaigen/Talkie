@@ -2,7 +2,7 @@ local Event = {}
 Event.__index = Event
 
 -- Types for IntelliSense.
-local Types = require(script.Parent.Parent.Shared.Types)
+local Types = require(script.Parent.Parent.Types)
 
 -- Signal module required to easily implement middlewares.
 local Signal = require(script.Parent.Parent.Shared.Signal)

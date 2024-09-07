@@ -2,7 +2,7 @@ local Property = {}
 Property.__index = Property
 
 -- Types for IntelliSense.
-local Types = require(script.Parent.Parent.Shared.Types)
+local Types = require(script.Parent.Parent.Types)
 
 -- Property based on reliable Event module.
 local Event = require(script.Parent.Event)

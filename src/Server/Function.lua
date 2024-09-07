@@ -5,7 +5,7 @@ Function.__call = function(self, player: Player, ...)
 end
 
 -- Types for IntelliSense.
-local Types = require(script.Parent.Parent.Shared.Types)
+local Types = require(script.Parent.Parent.Types)
 
 -- Utility function to process inbound/outbound middleware on bunch of args.
 function processMiddleware(player: Player, middleware: Types.ServerMiddlewareList, args: { any })
