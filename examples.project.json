@@ -8,6 +8,9 @@
       },
       "Packages": {
         "$path": "Packages"
+      },
+      "Services": {
+        "$className": "Folder"
       }
     },
 
