@@ -1,5 +1,5 @@
 local Talkie = {
-	_VERSION = 1220
+	_VERSION = 1240,
 }
 Talkie.__index = Talkie
 
@@ -18,6 +18,12 @@ local Property = require(script.Property)
 for key, value in pairs(require(script.Parent.Shared.Middleware)) do
 	Talkie[key] = value
 end
+
+-- Create storages.
+local Storage = require(script.Parent.Shared.Storage)
+local FunctionStorage = Storage.new(Function.new)
+local EventStorage = Storage.new(Event.new)
+local PropertyStorage = Storage.new(Property.new)
 
 --[[
 	Creates new Client instance.
@@ -54,7 +60,6 @@ function Talkie.Client(parent: Instance?, namespace: string?): Types.Client
 	return setmetatable({ _parent = parent }, Talkie)
 end
 
-
 --[[
 	All these methods will get some entity (Event, Function, Property) from the...
 	...game`s workspace and will return wrapper on them.
@@ -64,24 +69,24 @@ function Talkie:Function(
 	handler: Types.ClientHandler?,
 	middleware: Types.ClientMiddleware?
 ): Types.ClientFunction
-	return Function.new(self._parent, name, handler, middleware)
+	return FunctionStorage.new(self._parent, name, handler, middleware)
 end
 
 function Talkie:Event(name: string, middleware: Types.ClientMiddleware?): Types.ClientEvent
-	return Event.new(self._parent, name, middleware)
+	return EventStorage.new(self._parent, name, middleware)
 end
 
 function Talkie:Property(name: string, middleware: Types.ClientMiddleware?): Types.ClientProperty
-	return Property.new(self._parent, name, middleware)
+	return PropertyStorage.new(self._parent, name, middleware)
 end
 
 -- Parses the current folder and returns list with remotes in it.
 function Talkie:Parse(): Types.ClientParseResult
 	local entities = {}
 	local types = {
-		["RemoteFunction"] = Function,
-		["RemoteEvent"] = Event,
-		["UnreliableRemoteEvent"] = Event,
+		["RemoteFunction"] = FunctionStorage,
+		["RemoteEvent"] = EventStorage,
+		["UnreliableRemoteEvent"] = EventStorage,
 	}
 	for _, children: Instance in self._parent:GetChildren() do
 		if children:HasTag("TalkieProperty") then

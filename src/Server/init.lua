@@ -1,14 +1,12 @@
 local Talkie = {
-	_VERSION = 1220,
+	_VERSION = 1240,
 }
 Talkie.__index = Talkie
 
 -- Types for IntelliSense.
 local Types = require(script.Parent.Types)
---[[
-	Group of Talkie`s modules.
-]]
 
+-- Group of Talkie`s modules.
 local Function = require(script.Function)
 local Event = require(script.Event)
 local Property = require(script.Property)
@@ -17,6 +15,12 @@ local Property = require(script.Property)
 for key, value in pairs(require(script.Parent.Shared.Middleware)) do
 	Talkie[key] = value
 end
+
+-- Create storages.
+local Storage = require(script.Parent.Shared.Storage)
+local FunctionStorage = Storage.new(Function.new)
+local EventStorage = Storage.new(Event.new)
+local PropertyStorage = Storage.new(Property.new)
 
 --[[
 	Creates new Server instance.
@@ -28,7 +32,6 @@ end
 	```
 ]]
 function Talkie.Server(parent: Instance?, namespace: string?): Types.Server
-	
 	-- Typecheck parent if present.
 	if parent then
 		assert(typeof(parent) == "Instance", `parent is expected to be Instance, got {typeof(parent)}`)
@@ -72,15 +75,15 @@ function Talkie:Function(
 	handler: Types.ServerHandler?,
 	middleware: Types.ServerMiddleware?
 ): Types.ServerFunction
-	return Function.new(self._parent, name, handler, middleware)
+	return FunctionStorage.new(self._parent, name, handler, middleware)
 end
 
 function Talkie:Event(name: string, unreliable: boolean?, middleware: Types.ServerMiddleware?): Types.ServerEvent
-	return Event.new(self._parent, name, unreliable, middleware)
+	return EventStorage.new(self._parent, name, unreliable, middleware)
 end
 
 function Talkie:Property(name: string, value: any, middleware: Types.ServerMiddleware?): Types.ServerProperty
-	return Property.new(self._parent, name, value, middleware)
+	return PropertyStorage.new(self._parent, name, value, middleware)
 end
 
 -- Export the Talkie module.

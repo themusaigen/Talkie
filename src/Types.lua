@@ -89,4 +89,13 @@ export type Server = {
 	Outbound: (...ServerMiddlewareFun) -> ServerMiddleware,
 }
 
+export type SharedEntityList = {
+	ServerEvent
+	| ServerProperty
+	| ServerFunction
+	| ClientFunction
+	| ClientEvent
+	| ClientProperty
+}
+
 return nil
