@@ -1,5 +1,5 @@
 -- For Signal`s types.
-local Signal = require(script.Parent.Parent.Packages.Signal)
+local Signal = require(script.Parent.Signal)
 
 export type ClientCallback = (...any) -> ...any
 export type ClientHandler = (...any) -> ()

@@ -5,7 +5,7 @@ Event.__index = Event
 local Types = require(script.Parent.Parent.Shared.Types)
 
 -- Signal module required to easily implement middlewares.
-local Signal = require(script.Parent.Parent.Packages.Signal)
+local Signal = require(script.Parent.Parent.Shared.Signal)
 
 -- Utility function to process inbound/outbound middleware on bunch of args.
 function processMiddleware(player: Player, middleware: Types.ServerMiddlewareList, args: { any })
