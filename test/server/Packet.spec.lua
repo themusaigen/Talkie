@@ -1,35 +1,34 @@
-return function ()
-  beforeAll(function(context)
-    context.Packet = require(game.ReplicatedStorage.Talkie.Packet)
-    context.Types = context.Packet.Types
-  end)
+return function()
+	local Packet, Types, Types1
 
-  -- xd
-  it("0. should correctly work", function(context)
-    local PacketLogin = context.Packet.new({
-      name = context.Types.String8,
-      score = context.Types.UInt32,
-      admin = context.Types.Optional(context.Types.Struct({
-        isAdmin = context.Types.Boolean,
-        level = context.Types.UInt8,
-        superBanCommand = context.Types.Optional(context.Types.Boolean)
-      }))
-    })
+	beforeAll(function(context)
+		Packet = require(game.ReplicatedStorage.Talkie.Packet)
+		Types = Packet.Types
+	end)
 
-    local buf
-    expect(function()
-      buf = PacketLogin:Serialize({
-        name = "Player",
-        score = 999,
-        admin = {
-          isAdmin = false,
-          level = 0
-        }
-      })
-    end).never.to.throw()
-    expect(buf).to.ok()
-    expect(function()
-      print(PacketLogin:Deserialize(buf:Serialize()))
-    end).never.to.throw()
-  end)
+	it("0. should work with primitive packets", function()
+		local PacketLogin = Packet.new(0, { name = Types.String8 }, { score = Types.UInt32 })
+
+		-- Now serialize this packet.
+		local packet
+		expect(function()
+			packet = PacketLogin:Serialize({
+				name = "Player",
+				score = 999,
+			})
+		end).never.to.throw()
+
+		-- We are expecting that valid buf returned.
+		expect(packet).to.ok()
+
+		-- Shift the cursor.
+		packet:ReadUInt16()
+
+		-- Now deserialize this packet.
+		expect(function()
+			print(PacketLogin:Deserialize(packet))
+		end).never.to.throw()
+	end)
+
+
 end
