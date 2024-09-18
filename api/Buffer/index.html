@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-moonwave plugin-id-moonwave">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v2.3.1">
+<title data-rh="true">Buffer | Talkie</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://themusaigen.github.io/Talkie/api/Buffer"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="Buffer | Talkie"><meta data-rh="true" name="description" content="Wrapper over builtin [buffer](https://create.roblox.com/docs/reference/engine/libraries/buffer) library."><meta data-rh="true" property="og:description" content="Wrapper over builtin [buffer](https://create.roblox.com/docs/reference/engine/libraries/buffer) library."><link data-rh="true" rel="canonical" href="https://themusaigen.github.io/Talkie/api/Buffer"><link data-rh="true" rel="alternate" href="https://themusaigen.github.io/Talkie/api/Buffer" hreflang="en"><link data-rh="true" rel="alternate" href="https://themusaigen.github.io/Talkie/api/Buffer" hreflang="x-default"><link rel="stylesheet" href="/Talkie/assets/css/styles.e1adec2f.css">
+<link rel="preload" href="/Talkie/assets/js/runtime~main.a49be028.js" as="script">
+<link rel="preload" href="/Talkie/assets/js/main.c4823582.js" as="script">
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,e("light"))}()</script><div id="__docusaurus">
+<div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/Talkie/"><b class="navbar__title text--truncate">Talkie</b></a><a class="navbar__item navbar__link" href="/Talkie/docs/intro">Docs</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/Talkie/api/">API</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/themusaigen/Talkie" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="searchBox_ZlJk"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input type="search" id="search_input_react" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0 docPageContainer_wNNk"><div class="docPage_Dpn1"><div class="docSidebarContainer_o_re"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/Talkie/api/Talkie.Server">Server</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/Talkie/api/Talkie.Client">Client</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" aria-expanded="true" href="/Talkie/api/Buffer">Shared</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/Talkie/api/Buffer">​Buffer</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/Talkie/api/BufferIO">​Buffer​I​O</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/Talkie/api/Packet">​Packet</a></li></ul></li></ul></nav></div></div><main class="docMainContainer_HJE1"><div class="container padding-vert--lg"><div class="row"><div class="col docItemCol_MU3C"><div class="docItemContainer_Wv98"><article><div class="member_J0w1 markdown"><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_oUs_"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><header><h1 class="docTitle_mZRt" style="text-decoration:none"><span style="display:inline-block">Buffer</span></h1><div class="luaClassTags_EipM"></div><div>
+<p>Wrapper over builtin <a href="https://create.roblox.com/docs/reference/engine/libraries/buffer" target="_blank">buffer</a> library.</p>
+</div></header><h2 class="anchor anchorWithStickyNavbar_LWe7" id="functions">Functions<a href="#functions" class="hash-link" aria-label="Direct link to Functions" title="Direct link to Functions">​</a></h2><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="new"><code style="text-decoration:none">new</code><a href="#new" class="hash-link" aria-label="Direct link to new" title="Direct link to new">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L18"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->.</code><code class="green_DgR4">new</code><code>(</code><code>data<!-- -->: </code><code class="blue_P4bS">Types.Buffer</code><code class="op_lSLc"> | </code><code class="blue_P4bS">buffer</code><code class="op_lSLc"> | </code><code class="blue_P4bS">string</code><code class="op_lSLc"> | </code><code class="blue_P4bS">number</code><code class="op_lSLc"> | </code><code class="blue_P4bS">nil</code><code>) → </code><code class="blue_P4bS">Types.Buffer</code></div><div>
+<p>Constructs new buffer.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Is"><code style="text-decoration:none">Is</code><a href="#Is" class="hash-link" aria-label="Direct link to Is" title="Direct link to Is">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L52"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->.</code><code class="green_DgR4">Is</code><code>(</code><code>buf<!-- -->: </code><code class="blue_P4bS">table</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Check is value Buffer`s instance.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Resize"><code style="text-decoration:none">Resize</code><a href="#Resize" class="hash-link" aria-label="Direct link to Resize" title="Direct link to Resize">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L58"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">Resize</code><code>(</code><code>len<!-- -->: </code><code class="blue_P4bS">number</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>
+  Autoresize method is used to prevent out-of-bounds error.
+  Used for internal Buffer`s methods.
+</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Realloc"><code style="text-decoration:none">Realloc</code><a href="#Realloc" class="hash-link" aria-label="Direct link to Realloc" title="Direct link to Realloc">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L87"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">Realloc</code><code>(</code><code>len<!-- -->: </code><code class="blue_P4bS">number</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Force reallocation method with specified size.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ReadInt8"><code style="text-decoration:none">ReadInt8</code><a href="#ReadInt8" class="hash-link" aria-label="Direct link to ReadInt8" title="Direct link to ReadInt8">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L122"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">ReadInt8</code><code>(</code><code>) → </code><code class="blue_P4bS">number</code></div><div>
+<p>Returns a number in range [-128; 127]</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ReadUInt8"><code style="text-decoration:none">ReadUInt8</code><a href="#ReadUInt8" class="hash-link" aria-label="Direct link to ReadUInt8" title="Direct link to ReadUInt8">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L130"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">ReadUInt8</code><code>(</code><code>) → </code><code class="blue_P4bS">number</code></div><div>
+<p>Returns a number in range [0; 255]</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ReadInt16"><code style="text-decoration:none">ReadInt16</code><a href="#ReadInt16" class="hash-link" aria-label="Direct link to ReadInt16" title="Direct link to ReadInt16">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L138"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">ReadInt16</code><code>(</code><code>) → </code><code class="blue_P4bS">number</code></div><div>
+<p>Returns a number in range [-32768; 32767]</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ReadUInt16"><code style="text-decoration:none">ReadUInt16</code><a href="#ReadUInt16" class="hash-link" aria-label="Direct link to ReadUInt16" title="Direct link to ReadUInt16">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L146"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">ReadUInt16</code><code>(</code><code>) → </code><code class="blue_P4bS">number</code></div><div>
+<p>Returns a number in range [0; 65535].</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ReadInt32"><code style="text-decoration:none">ReadInt32</code><a href="#ReadInt32" class="hash-link" aria-label="Direct link to ReadInt32" title="Direct link to ReadInt32">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L154"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">ReadInt32</code><code>(</code><code>) → </code><code class="blue_P4bS">number</code></div><div>
+<p>Returns a number in range [-2'147'483'648; 2'147'483'647]</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ReadUInt32"><code style="text-decoration:none">ReadUInt32</code><a href="#ReadUInt32" class="hash-link" aria-label="Direct link to ReadUInt32" title="Direct link to ReadUInt32">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L162"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">ReadUInt32</code><code>(</code><code>) → </code><code class="blue_P4bS">number</code></div><div>
+<p>Returns a number in range [0; 4'294'967'295]</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ReadFloat"><code style="text-decoration:none">ReadFloat</code><a href="#ReadFloat" class="hash-link" aria-label="Direct link to ReadFloat" title="Direct link to ReadFloat">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L170"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">ReadFloat</code><code>(</code><code>) → </code><code class="blue_P4bS">number</code></div><div>
+<p>Returns a floating point (32 bits) number.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ReadFloat32"><code style="text-decoration:none">ReadFloat32</code><a href="#ReadFloat32" class="hash-link" aria-label="Direct link to ReadFloat32" title="Direct link to ReadFloat32">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L178"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">ReadFloat32</code><code>(</code><code>) → </code><code class="blue_P4bS">number</code></div><div>
+<p>Returns a floating point (32 bits) number.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ReadFloat64"><code style="text-decoration:none">ReadFloat64</code><a href="#ReadFloat64" class="hash-link" aria-label="Direct link to ReadFloat64" title="Direct link to ReadFloat64">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L186"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">ReadFloat64</code><code>(</code><code>) → </code><code class="blue_P4bS">number</code></div><div>
+<p>Returns a floating point (64 bits) number.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="WriteInt8"><code style="text-decoration:none">WriteInt8</code><a href="#WriteInt8" class="hash-link" aria-label="Direct link to WriteInt8" title="Direct link to WriteInt8">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L194"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">WriteInt8</code><code>(</code><div class="inset_uKQm"><div><code>value<!-- -->: </code><code class="blue_P4bS">number</code><span class="inlineDescription_G7Er">-- <span>
+<p>Integer. Floating point will throw the error.</p>
+</span></span></div></div><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Writes a number in range [-128; 127]</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="WriteUInt8"><code style="text-decoration:none">WriteUInt8</code><a href="#WriteUInt8" class="hash-link" aria-label="Direct link to WriteUInt8" title="Direct link to WriteUInt8">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L202"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">WriteUInt8</code><code>(</code><div class="inset_uKQm"><div><code>value<!-- -->: </code><code class="blue_P4bS">number</code><span class="inlineDescription_G7Er">-- <span>
+<p>Integer. Floating point will throw the error.</p>
+</span></span></div></div><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Writes a number in range [0; 255]</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="WriteInt16"><code style="text-decoration:none">WriteInt16</code><a href="#WriteInt16" class="hash-link" aria-label="Direct link to WriteInt16" title="Direct link to WriteInt16">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L210"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">WriteInt16</code><code>(</code><div class="inset_uKQm"><div><code>value<!-- -->: </code><code class="blue_P4bS">number</code><span class="inlineDescription_G7Er">-- <span>
+<p>Integer. Floating point will throw the error.</p>
+</span></span></div></div><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Writes a number in range [-32768; 32767]</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="WriteUInt16"><code style="text-decoration:none">WriteUInt16</code><a href="#WriteUInt16" class="hash-link" aria-label="Direct link to WriteUInt16" title="Direct link to WriteUInt16">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L218"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">WriteUInt16</code><code>(</code><div class="inset_uKQm"><div><code>value<!-- -->: </code><code class="blue_P4bS">number</code><span class="inlineDescription_G7Er">-- <span>
+<p>Integer. Floating point will throw the error.</p>
+</span></span></div></div><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Writes a number in range [0; 65535]</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="WriteInt32"><code style="text-decoration:none">WriteInt32</code><a href="#WriteInt32" class="hash-link" aria-label="Direct link to WriteInt32" title="Direct link to WriteInt32">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L226"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">WriteInt32</code><code>(</code><div class="inset_uKQm"><div><code>value<!-- -->: </code><code class="blue_P4bS">number</code><span class="inlineDescription_G7Er">-- <span>
+<p>Integer. Floating point will throw the error.</p>
+</span></span></div></div><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Writes a number in range [-2'147'483'648; 2'147'483'647]</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="WriteUInt32"><code style="text-decoration:none">WriteUInt32</code><a href="#WriteUInt32" class="hash-link" aria-label="Direct link to WriteUInt32" title="Direct link to WriteUInt32">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L234"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">WriteUInt32</code><code>(</code><div class="inset_uKQm"><div><code>value<!-- -->: </code><code class="blue_P4bS">number</code><span class="inlineDescription_G7Er">-- <span>
+<p>Integer. Floating point will throw the error.</p>
+</span></span></div></div><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Writes a number in range [0; 4'294'967'295]</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="WriteFloat"><code style="text-decoration:none">WriteFloat</code><a href="#WriteFloat" class="hash-link" aria-label="Direct link to WriteFloat" title="Direct link to WriteFloat">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L242"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">WriteFloat</code><code>(</code><code>value<!-- -->: </code><code class="blue_P4bS">number</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Writes a floating point (32 bits) value.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="WriteFloat32"><code style="text-decoration:none">WriteFloat32</code><a href="#WriteFloat32" class="hash-link" aria-label="Direct link to WriteFloat32" title="Direct link to WriteFloat32">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L250"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">WriteFloat32</code><code>(</code><code>value<!-- -->: </code><code class="blue_P4bS">number</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Writes a floating point (32 bits) value.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="WriteFloat64"><code style="text-decoration:none">WriteFloat64</code><a href="#WriteFloat64" class="hash-link" aria-label="Direct link to WriteFloat64" title="Direct link to WriteFloat64">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L258"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">WriteFloat64</code><code>(</code><code>value<!-- -->: </code><code class="blue_P4bS">number</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Writes a floating point (64 bits) value.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ReadString"><code style="text-decoration:none">ReadString</code><a href="#ReadString" class="hash-link" aria-label="Direct link to ReadString" title="Direct link to ReadString">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L295"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">ReadString</code><code>(</code><code>len<!-- -->: </code><code class="blue_P4bS">number</code><code>) → </code><code class="blue_P4bS">string</code></div><div>
+<p>Reads the string from buffer.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="WriteString"><code style="text-decoration:none">WriteString</code><a href="#WriteString" class="hash-link" aria-label="Direct link to WriteString" title="Direct link to WriteString">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L319"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">WriteString</code><code>(</code><code>str<!-- -->: </code><code class="blue_P4bS">string</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Writes the string in buffer.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="WriteBuffer"><code style="text-decoration:none">WriteBuffer</code><a href="#WriteBuffer" class="hash-link" aria-label="Direct link to WriteBuffer" title="Direct link to WriteBuffer">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L337"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">WriteBuffer</code><code>(</code><code>input<!-- -->: </code><code class="blue_P4bS">Types.Buffer</code><code class="op_lSLc"> | </code><code class="blue_P4bS">buffer</code><code class="op_lSLc"> | </code><code class="blue_P4bS">string</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Writes other buffer into self.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ReadBuffer"><code style="text-decoration:none">ReadBuffer</code><a href="#ReadBuffer" class="hash-link" aria-label="Direct link to ReadBuffer" title="Direct link to ReadBuffer">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L350"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">ReadBuffer</code><code>(</code><code>size<!-- -->: </code><code class="blue_P4bS">number</code><code>) → </code><code class="blue_P4bS">Types.Buffer</code></div><div>
+<p>Reads wrapper class from <a href="https://create.roblox.com/docs/reference/engine/libraries/buffer" target="_blank">buffer</a></p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="WriteBoolean"><code style="text-decoration:none">WriteBoolean</code><a href="#WriteBoolean" class="hash-link" aria-label="Direct link to WriteBoolean" title="Direct link to WriteBoolean">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L355"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">WriteBoolean</code><code>(</code><code>state<!-- -->: </code><code class="blue_P4bS">boolean</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Writes a boolean.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ReadBoolean"><code style="text-decoration:none">ReadBoolean</code><a href="#ReadBoolean" class="hash-link" aria-label="Direct link to ReadBoolean" title="Direct link to ReadBoolean">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L363"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">ReadBoolean</code><code>(</code><code>) → </code><code class="blue_P4bS">boolean</code></div><div>
+<p>Reads a boolean.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="GetNumberOfUnreadBytes"><code style="text-decoration:none">GetNumberOfUnreadBytes</code><a href="#GetNumberOfUnreadBytes" class="hash-link" aria-label="Direct link to GetNumberOfUnreadBytes" title="Direct link to GetNumberOfUnreadBytes">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L368"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">GetNumberOfUnreadBytes</code><code>(</code><code>) → </code><code class="blue_P4bS">number</code></div><div>
+<p>Returns number of unread bytes.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="GetNumberOfBytesUsed"><code style="text-decoration:none">GetNumberOfBytesUsed</code><a href="#GetNumberOfBytesUsed" class="hash-link" aria-label="Direct link to GetNumberOfBytesUsed" title="Direct link to GetNumberOfBytesUsed">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L373"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">GetNumberOfBytesUsed</code><code>(</code><code>) → </code><code class="blue_P4bS">number</code></div><div>
+<p>Returns number of bytes already written.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="IgnoreBytes"><code style="text-decoration:none">IgnoreBytes</code><a href="#IgnoreBytes" class="hash-link" aria-label="Direct link to IgnoreBytes" title="Direct link to IgnoreBytes">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L378"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">IgnoreBytes</code><code>(</code><code>count<!-- -->: </code><code class="blue_P4bS">number</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Ignore specific amount of bytes. Useful then you want to ignore packetId or unnecessary data.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="GetSize"><code style="text-decoration:none">GetSize</code><a href="#GetSize" class="hash-link" aria-label="Direct link to GetSize" title="Direct link to GetSize">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L387"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">GetSize</code><code>(</code><code>) → </code><code class="blue_P4bS">number</code></div><div>
+<p>Returns the length of buffer. <a href="https://create.roblox.com/docs/reference/engine/libraries/buffer#len" target="_blank">buffer.len</a> used underhood.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="SetWriteOffset"><code style="text-decoration:none">SetWriteOffset</code><a href="#SetWriteOffset" class="hash-link" aria-label="Direct link to SetWriteOffset" title="Direct link to SetWriteOffset">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L392"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">SetWriteOffset</code><code>(</code><code>offset<!-- -->: </code><code class="blue_P4bS">number</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Shifts the write cursor.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="SetReadOffset"><code style="text-decoration:none">SetReadOffset</code><a href="#SetReadOffset" class="hash-link" aria-label="Direct link to SetReadOffset" title="Direct link to SetReadOffset">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L401"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">SetReadOffset</code><code>(</code><code>offset<!-- -->: </code><code class="blue_P4bS">number</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Shifts the read cursor.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ResetWriteOffset"><code style="text-decoration:none">ResetWriteOffset</code><a href="#ResetWriteOffset" class="hash-link" aria-label="Direct link to ResetWriteOffset" title="Direct link to ResetWriteOffset">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L410"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">ResetWriteOffset</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Resets write cursor by setting it to 0.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ResetReadOffset"><code style="text-decoration:none">ResetReadOffset</code><a href="#ResetReadOffset" class="hash-link" aria-label="Direct link to ResetReadOffset" title="Direct link to ResetReadOffset">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L415"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">ResetReadOffset</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Resets read cursor by setting it to 0.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ResetOffsets"><code style="text-decoration:none">ResetOffsets</code><a href="#ResetOffsets" class="hash-link" aria-label="Direct link to ResetOffsets" title="Direct link to ResetOffsets">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L420"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">ResetOffsets</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Resets all offsets.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Reset"><code style="text-decoration:none">Reset</code><a href="#Reset" class="hash-link" aria-label="Direct link to Reset" title="Direct link to Reset">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L426"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">Reset</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Resets all offsets and fill buffer as 0x00 for all length.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="SetData"><code style="text-decoration:none">SetData</code><a href="#SetData" class="hash-link" aria-label="Direct link to SetData" title="Direct link to SetData">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L434"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">SetData</code><code>(</code><code>data<!-- -->: </code><code class="blue_P4bS">Types.Buffer</code><code class="op_lSLc"> | </code><code class="blue_P4bS">buffer</code><code class="op_lSLc"> | </code><code class="blue_P4bS">string</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Sets new data.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="GetData"><code style="text-decoration:none">GetData</code><a href="#GetData" class="hash-link" aria-label="Direct link to GetData" title="Direct link to GetData">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L449"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">GetData</code><code>(</code><code>) → </code><code class="blue_P4bS">buffer</code></div><div>
+<p>Returns <a href="https://create.roblox.com/docs/reference/engine/libraries/buffer" target="_blank">buffer</a> to network replicate.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Serialize"><code style="text-decoration:none">Serialize</code><a href="#Serialize" class="hash-link" aria-label="Direct link to Serialize" title="Direct link to Serialize">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/themusaigen/Talkie/blob/main/src/Buffer.lua#L454"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Buffer<!-- -->:</code><code class="green_DgR4">Serialize</code><code>(</code><code>) → </code><code class="blue_P4bS">string</code></div><div>
+<p>Serializes buffer. <a href="https://create.roblox.com/docs/reference/engine/libraries/buffer#tostring" target="_blank">buffer.tostring</a> used underhood.</p>
+</div></div></article></div><details><summary>Show raw api</summary><pre style="max-width:100%;white-space:pre-wrap">{
+    &quot;functions&quot;: [
+        {
+            &quot;name&quot;: &quot;new&quot;,
+            &quot;desc&quot;: &quot;Constructs new buffer.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;data&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Types.Buffer | buffer | string | number | nil&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Types.Buffer\n&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 18,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Is&quot;,
+            &quot;desc&quot;: &quot;Check is value Buffer`s instance.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;buf&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;table&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 52,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Resize&quot;,
+            &quot;desc&quot;: &quot;Autoresize method is used to prevent out-of-bounds error.\nUsed for internal Buffer`s methods.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;len&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 58,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Realloc&quot;,
+            &quot;desc&quot;: &quot;Force reallocation method with specified size.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;len&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 87,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadInt8&quot;,
+            &quot;desc&quot;: &quot;Returns a number in range [-128; 127]&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 122,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadUInt8&quot;,
+            &quot;desc&quot;: &quot;Returns a number in range [0; 255]&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 130,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadInt16&quot;,
+            &quot;desc&quot;: &quot;Returns a number in range [-32768; 32767]&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 138,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadUInt16&quot;,
+            &quot;desc&quot;: &quot;Returns a number in range [0; 65535].&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 146,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadInt32&quot;,
+            &quot;desc&quot;: &quot;Returns a number in range [-2&#x27;147&#x27;483&#x27;648; 2&#x27;147&#x27;483&#x27;647]&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 154,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadUInt32&quot;,
+            &quot;desc&quot;: &quot;Returns a number in range [0; 4&#x27;294&#x27;967&#x27;295]&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 162,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadFloat&quot;,
+            &quot;desc&quot;: &quot;Returns a floating point (32 bits) number.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 170,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadFloat32&quot;,
+            &quot;desc&quot;: &quot;Returns a floating point (32 bits) number.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 178,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadFloat64&quot;,
+            &quot;desc&quot;: &quot;Returns a floating point (64 bits) number.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 186,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteInt8&quot;,
+            &quot;desc&quot;: &quot;Writes a number in range [-128; 127]&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;value&quot;,
+                    &quot;desc&quot;: &quot;Integer. Floating point will throw the error.&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 194,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteUInt8&quot;,
+            &quot;desc&quot;: &quot;Writes a number in range [0; 255]&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;value&quot;,
+                    &quot;desc&quot;: &quot;Integer. Floating point will throw the error.&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 202,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteInt16&quot;,
+            &quot;desc&quot;: &quot;Writes a number in range [-32768; 32767]&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;value&quot;,
+                    &quot;desc&quot;: &quot;Integer. Floating point will throw the error.&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 210,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteUInt16&quot;,
+            &quot;desc&quot;: &quot;Writes a number in range [0; 65535]&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;value&quot;,
+                    &quot;desc&quot;: &quot;Integer. Floating point will throw the error.&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 218,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteInt32&quot;,
+            &quot;desc&quot;: &quot;Writes a number in range [-2&#x27;147&#x27;483&#x27;648; 2&#x27;147&#x27;483&#x27;647]&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;value&quot;,
+                    &quot;desc&quot;: &quot;Integer. Floating point will throw the error.&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 226,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteUInt32&quot;,
+            &quot;desc&quot;: &quot;Writes a number in range [0; 4&#x27;294&#x27;967&#x27;295]&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;value&quot;,
+                    &quot;desc&quot;: &quot;Integer. Floating point will throw the error.&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 234,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteFloat&quot;,
+            &quot;desc&quot;: &quot;Writes a floating point (32 bits) value.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;value&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 242,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteFloat32&quot;,
+            &quot;desc&quot;: &quot;Writes a floating point (32 bits) value.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;value&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 250,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteFloat64&quot;,
+            &quot;desc&quot;: &quot;Writes a floating point (64 bits) value.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;value&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 258,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadString&quot;,
+            &quot;desc&quot;: &quot;Reads the string from buffer.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;len&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string\n&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 295,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteString&quot;,
+            &quot;desc&quot;: &quot;Writes the string in buffer.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;str&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 319,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteBuffer&quot;,
+            &quot;desc&quot;: &quot;Writes other buffer into self.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;input&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Types.Buffer | buffer | string&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 337,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadBuffer&quot;,
+            &quot;desc&quot;: &quot;Reads wrapper class from [buffer](https://create.roblox.com/docs/reference/engine/libraries/buffer)&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;size&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Types.Buffer\n&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 350,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;WriteBoolean&quot;,
+            &quot;desc&quot;: &quot;Writes a boolean.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;state&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;boolean&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 355,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReadBoolean&quot;,
+            &quot;desc&quot;: &quot;Reads a boolean.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;boolean\n&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 363,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;GetNumberOfUnreadBytes&quot;,
+            &quot;desc&quot;: &quot;Returns number of unread bytes.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number\n&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 368,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;GetNumberOfBytesUsed&quot;,
+            &quot;desc&quot;: &quot;Returns number of bytes already written.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number\n&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 373,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;IgnoreBytes&quot;,
+            &quot;desc&quot;: &quot;Ignore specific amount of bytes. Useful then you want to ignore packetId or unnecessary data.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;count&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 378,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;GetSize&quot;,
+            &quot;desc&quot;: &quot;Returns the length of buffer. [buffer.len](https://create.roblox.com/docs/reference/engine/libraries/buffer#len) used underhood.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number\n&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 387,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;SetWriteOffset&quot;,
+            &quot;desc&quot;: &quot;Shifts the write cursor.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;offset&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 392,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;SetReadOffset&quot;,
+            &quot;desc&quot;: &quot;Shifts the read cursor.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;offset&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 401,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ResetWriteOffset&quot;,
+            &quot;desc&quot;: &quot;Resets write cursor by setting it to 0.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 410,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ResetReadOffset&quot;,
+            &quot;desc&quot;: &quot;Resets read cursor by setting it to 0.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 415,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ResetOffsets&quot;,
+            &quot;desc&quot;: &quot;Resets all offsets.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 420,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Reset&quot;,
+            &quot;desc&quot;: &quot;Resets all offsets and fill buffer as 0x00 for all length.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 426,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;SetData&quot;,
+            &quot;desc&quot;: &quot;Sets new data.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;data&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Types.Buffer | buffer | string&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 434,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;GetData&quot;,
+            &quot;desc&quot;: &quot;Returns [buffer](https://create.roblox.com/docs/reference/engine/libraries/buffer) to network replicate.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;buffer\n&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 449,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Serialize&quot;,
+            &quot;desc&quot;: &quot;Serializes buffer. [buffer.tostring](https://create.roblox.com/docs/reference/engine/libraries/buffer#tostring) used underhood.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string\n&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 454,
+                &quot;path&quot;: &quot;src/Buffer.lua&quot;
+            }
+        }
+    ],
+    &quot;properties&quot;: [],
+    &quot;types&quot;: [],
+    &quot;name&quot;: &quot;Buffer&quot;,
+    &quot;desc&quot;: &quot;Wrapper over builtin [buffer](https://create.roblox.com/docs/reference/engine/libraries/buffer) library.&quot;,
+    &quot;source&quot;: {
+        &quot;line&quot;: 6,
+        &quot;path&quot;: &quot;src/Buffer.lua&quot;
+    }
+}</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link toc-highlight">Types</a></li><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#GetData" class="table-of-contents__link toc-highlight">:GetData</a></li><li><a href="#GetNumberOfBytesUsed" class="table-of-contents__link toc-highlight">:GetNumberOfBytesUsed</a></li><li><a href="#GetNumberOfUnreadBytes" class="table-of-contents__link toc-highlight">:GetNumberOfUnreadBytes</a></li><li><a href="#GetSize" class="table-of-contents__link toc-highlight">:GetSize</a></li><li><a href="#IgnoreBytes" class="table-of-contents__link toc-highlight">:IgnoreBytes</a></li><li><a href="#ReadBoolean" class="table-of-contents__link toc-highlight">:ReadBoolean</a></li><li><a href="#ReadBuffer" class="table-of-contents__link toc-highlight">:ReadBuffer</a></li><li><a href="#ReadFloat" class="table-of-contents__link toc-highlight">:ReadFloat</a></li><li><a href="#ReadFloat32" class="table-of-contents__link toc-highlight">:ReadFloat32</a></li><li><a href="#ReadFloat64" class="table-of-contents__link toc-highlight">:ReadFloat64</a></li><li><a href="#ReadInt16" class="table-of-contents__link toc-highlight">:ReadInt16</a></li><li><a href="#ReadInt32" class="table-of-contents__link toc-highlight">:ReadInt32</a></li><li><a href="#ReadInt8" class="table-of-contents__link toc-highlight">:ReadInt8</a></li><li><a href="#ReadString" class="table-of-contents__link toc-highlight">:ReadString</a></li><li><a href="#ReadUInt16" class="table-of-contents__link toc-highlight">:ReadUInt16</a></li><li><a href="#ReadUInt32" class="table-of-contents__link toc-highlight">:ReadUInt32</a></li><li><a href="#ReadUInt8" class="table-of-contents__link toc-highlight">:ReadUInt8</a></li><li><a href="#Realloc" class="table-of-contents__link toc-highlight">:Realloc</a></li><li><a href="#Reset" class="table-of-contents__link toc-highlight">:Reset</a></li><li><a href="#ResetOffsets" class="table-of-contents__link toc-highlight">:ResetOffsets</a></li><li><a href="#ResetReadOffset" class="table-of-contents__link toc-highlight">:ResetReadOffset</a></li><li><a href="#ResetWriteOffset" class="table-of-contents__link toc-highlight">:ResetWriteOffset</a></li><li><a href="#Resize" class="table-of-contents__link toc-highlight">:Resize</a></li><li><a href="#Serialize" class="table-of-contents__link toc-highlight">:Serialize</a></li><li><a href="#SetData" class="table-of-contents__link toc-highlight">:SetData</a></li><li><a href="#SetReadOffset" class="table-of-contents__link toc-highlight">:SetReadOffset</a></li><li><a href="#SetWriteOffset" class="table-of-contents__link toc-highlight">:SetWriteOffset</a></li><li><a href="#WriteBoolean" class="table-of-contents__link toc-highlight">:WriteBoolean</a></li><li><a href="#WriteBuffer" class="table-of-contents__link toc-highlight">:WriteBuffer</a></li><li><a href="#WriteFloat" class="table-of-contents__link toc-highlight">:WriteFloat</a></li><li><a href="#WriteFloat32" class="table-of-contents__link toc-highlight">:WriteFloat32</a></li><li><a href="#WriteFloat64" class="table-of-contents__link toc-highlight">:WriteFloat64</a></li><li><a href="#WriteInt16" class="table-of-contents__link toc-highlight">:WriteInt16</a></li><li><a href="#WriteInt32" class="table-of-contents__link toc-highlight">:WriteInt32</a></li><li><a href="#WriteInt8" class="table-of-contents__link toc-highlight">:WriteInt8</a></li><li><a href="#WriteString" class="table-of-contents__link toc-highlight">:WriteString</a></li><li><a href="#WriteUInt16" class="table-of-contents__link toc-highlight">:WriteUInt16</a></li><li><a href="#WriteUInt32" class="table-of-contents__link toc-highlight">:WriteUInt32</a></li><li><a href="#WriteUInt8" class="table-of-contents__link toc-highlight">:WriteUInt8</a></li><li><a href="#Is" class="table-of-contents__link toc-highlight">.Is</a></li><li><a href="#new" class="table-of-contents__link toc-highlight">.new</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 themusaigen. Built with Moonwave and Docusaurus.</div></div></div></footer></div>
+<script src="/Talkie/assets/js/runtime~main.a49be028.js"></script>
+<script src="/Talkie/assets/js/main.c4823582.js"></script>
+</body>
+</html>
