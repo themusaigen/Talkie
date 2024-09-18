@@ -1,0 +1,18 @@
+gitRepoUrl = "https://github.com/themusaigen/Talkie"
+gitSourceBranch = "main"
+
+[[classOrder]]
+section = "Server"
+classes = ["Talkie.Server", "Server.Function", "Server.Event", "Server.Property"]
+
+[[classOrder]]
+section = "Client"
+classes = ["Talkie.Client", "Client.Function", "Client.Event", "Client.Property"]
+
+[[classOrder]]
+section = "Shared"
+classes = ["Buffer", "BufferIO", "Packet"]
+
+[home]
+enabled = true
+includeReadme = false

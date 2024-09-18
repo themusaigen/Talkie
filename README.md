@@ -23,7 +23,7 @@ wally init
 Add this line into `dependencies` on your `wally.toml` file
 
 ```bash
-Talkie = "themusaigen/talkie@1.24.0"
+Talkie = "themusaigen/talkie@1.25.0"
 ```
 
 ## Usage

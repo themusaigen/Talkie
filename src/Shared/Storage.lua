@@ -5,17 +5,17 @@ local Storage = {}
 local Types = require(script.Parent.Parent.Types)
 
 -- Returns new storage with specified constructor for remote objects.
-function Storage.new(ctor: (parent: Instance, name: string, ...any) -> any)
+function Storage.new<T>(ctor: (parent: Instance, name: string, ...any) -> T): Types.Storage<T>
   local self = {
-    _storage = {} :: {[Instance]: Types.SharedEntityList}
+    _storage = {} :: {[Instance]: {[string]: T}}
   }
-  
+
   -- Parent and name are default parameters for all modules so use it.
 
   -- Creates new object or returns cached-one
-  self.new = function(parent: Instance, name: string, ...)
+  self.new = function(parent: Instance, name: string, ...): T
     -- If storage for this parent don't exist create new one
-    local storage = self._storage[parent]
+    local storage: {[string]: T} = self._storage[parent]
     if not storage then
       storage = {}
 
@@ -23,7 +23,7 @@ function Storage.new(ctor: (parent: Instance, name: string, ...any) -> any)
     end
 
     -- Check for entity. If don't exist construct new one
-    local entity = storage[name]
+    local entity: T = storage[name]
     if not entity then
       -- Construct.
       entity = ctor(parent, name, ...)
@@ -31,9 +31,9 @@ function Storage.new(ctor: (parent: Instance, name: string, ...any) -> any)
       -- Cache this one.
       storage[name] = entity
     end
-    
+
     -- Return.
-    return entity
+    return entity :: T
   end
 
   -- Return storage.

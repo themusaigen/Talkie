@@ -1,3 +1,22 @@
+--!optimize 2
+--!native
+
+--[=[
+  @class Packet
+
+  Packets are used to reduce network bandwidth while not losing the readability of the data for the developer.
+  Packets uses `BufferIO` API to read & write more complex types like Vector2\3d, CFrame and other.
+  Using packets will add 2 bytes overhead for each data to store their ID.
+
+  ```lua
+  -- 2 is the ID of the packet, while serializing Packet will add it automatically.
+  local PacketShoot = Packet.new(2, {
+    {origin = Packet.Types.Vector3},
+    {target = Packet.Types.Vector3},
+    {weaponId = Packet.Types.UInt8}
+  })
+  ```
+]=]
 local Packet = {}
 Packet.__index = Packet
 
@@ -10,7 +29,7 @@ local Buffer = require(script.Parent.Buffer)
 -- Types-helper for creating model of packet
 Packet.Types = require(script.Parent.BufferIO)
 
--- Creates new packet by provided model.
+--- Creates new packet by provided model and ID.
 function Packet.new(id: number, ...: {[string]: Types.TrivialType<any>}): Types.Packet
 	assert(typeof(id) == "number", `id is expected to be number, got {typeof(id)}`)
 	assert(id >= 0, "id is not expected to be less than zero")
@@ -48,6 +67,7 @@ local function processDeserialize(packet: Types.Buffer, model: Types.TypeList<an
 	return out
 end
 
+--- Serializes the packet to Talkie`s Buffer instance.
 function Packet:Serialize(data: table): Types.Buffer
 	-- Create new buffer.
 	local packet = Buffer.new()
@@ -62,6 +82,7 @@ function Packet:Serialize(data: table): Types.Buffer
 	return packet
 end
 
+--- Deserializes the buffer or string to readable data structure.
 function Packet:Deserialize(data: Types.Buffer | buffer | string): {[string]: any}
 	return processDeserialize(Buffer.new(data), self._model, not Buffer.Is(data))
 end

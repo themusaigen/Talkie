@@ -1,7 +1,7 @@
 [package]
 name = "themusaigen/talkie"
 description = "Library for remote communication. Inspired by Comm from Stephen Leitnick."
-version = "1.24.0"
+version = "1.25.0"
 license = "MIT"
 authors = ["themusaigen <>"]
 exclude = ["**"]

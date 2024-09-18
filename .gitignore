@@ -1,9 +1,10 @@
 # Ignore packages
 /Packages
-test/Packages
+**/Packages
 
 # Ignore Roblox files
 *.rbxlx
 *.rbxlx.lock
 *.rbxl
 *.rbxl.lock
+

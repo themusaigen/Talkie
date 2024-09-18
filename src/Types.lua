@@ -93,6 +93,10 @@ export type SharedEntityList = {
 	[string]: ServerEvent | ServerProperty | ServerFunction | ClientFunction | ClientEvent | ClientProperty,
 }
 
+export type Storage<T> = {
+	new: (parent: Instance, name: string, ...any) -> T,
+}
+
 export type Buffer = {
 	Resize: (self: Buffer, size: number) -> (),
 	Serialize: (self: Buffer) -> string,
@@ -165,7 +169,7 @@ export type BufferIO = {
 	Array16: <T>(valueType: TrivialType<T>) -> TrivialType<{T}>,
 	Array32: <T>(valueType: TrivialType<T>) -> TrivialType<{T}>,
 	Optional: <Args...>(...TrivialType<Args...>) -> TrivialType<{[string]: any}>,
-	Struct: (model: {[string]: TrivialType<any>}) -> TrivialType<{[string]: any}>,
+	Struct: (...{[string]: TrivialType<any>}) -> TrivialType<{[string]: any}>,
 	Default: <T>(valueType: TrivialType<T>, default: T) -> TrivialType<T>,
 	Map8: <K, V>(keyType: TrivialType<K>, valueType: TrivialType<V>) -> TrivialType<{[K]: V}>,
 	Map16: <K, V>(keyType: TrivialType<K>, valueType: TrivialType<V>) -> TrivialType<{[K]: V}>,
